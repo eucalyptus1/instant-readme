@@ -7,7 +7,15 @@ const questions = [
     {
         type: 'input',
         name: 'title',
-        message: 'What is the title of your project?'
+        message: 'What is the title of your project?',
+        validate: titleInput => {
+            if (titleInput) {
+              return true;
+            } else {
+              console.log('The project must have a title');
+              return false;
+            }
+        }
     },
 
     {
@@ -65,19 +73,7 @@ function init() {
     inquirer.prompt(questions)
     .then(answers => {
         writeToFile(answers);
-    })
-    // .then(input => {
-
-    //     return writeToFile(input);
-    // })
-    // .then(data => {
-    //     return generateMarkdown(data);
-    // })
-    // .catch(err => {
-    //     console.log(err)
-    //   })
-        
-    
+    });
 };
 
 // Function call to initialize app
