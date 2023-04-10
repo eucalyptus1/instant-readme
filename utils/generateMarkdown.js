@@ -1,3 +1,5 @@
+contentsArr = [];
+
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {}
@@ -15,50 +17,56 @@ function generateMarkdown(data) {
   if (data.description) {
     desc = `# Description
     ## ${data.description}`;
-    contDesc = `* Description`;
+    conDesc = `-Description`;
+    contentsArr.push(conDesc);
   } else {
-    data.description = ``;
+    desc = ``;
+    conDesc = "";
   }
 
   if (data.usage) {
     use = `# Usage
      ## ${data.usage}`;
-    contUse = `* Usage`;
+    contUse = `-Usage`;
+    contentsArr.push(contUse);
   } else {
-    data.usage = ``;
+    use = ``;
+    contUse = "";
   }
 
   if (data.contributing) {
     cont = `# How to contribute
     ## This project was built by ${data.contributing}`;
-    conTrib = `* Contributing`;
+    conTrib = `-Contributing`;
+    contentsArr.push(conTrib);
   } else {
-    data.contributing = ``;
+    cont = ``;
+    conTrib = "";
   }
 
   if (data.tests) {
     test = `# Tests
      ## ${data.tests}`;
-    conTest = `* Testing`;
+    conTest = `-Testing`;
+    contentsArr.push(conTest);
   } else {
-    data.tests = ``;
+    test = ``;
+    conTest = "";
   }
 
   if (data.questions) {
     quest = `# Contact
      ## For any questions about this project, I can be reached through my Github account at https://github.com/${data.questions}`;
-    conQuest = `* Contact`;
+    conQuest = `-Contact`;
+    contentsArr.push(conQuest);
   } else {
-    data.questions = ``;
+    quest = ``;
+    conQuest = "";
   }
 
   let tableOfContents = `
-  ${contDesc}
-  ${contUse}
-  ${conTrib}
-  ${conTest}
-  ${conQuest}
-  `;
+  ## Contents
+  ${contentsArr.map((data) => `${data}`).join("")}`;
 
   return `# ${data.title}
 
