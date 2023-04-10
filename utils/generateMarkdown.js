@@ -12,51 +12,69 @@ function renderLicenseSection(license) {}
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-
   if (data.description) {
-    data.description = `## ${data.description}`
+    desc = `# Description
+    ## ${data.description}`;
+    contDesc = `* Description`;
   } else {
-    data.description = ``
+    data.description = ``;
   }
 
   if (data.usage) {
-    data.usage = `## ${data.usage}`
+    use = `# Usage
+     ## ${data.usage}`;
+    contUse = `* Usage`;
   } else {
-    data.usage = ``
+    data.usage = ``;
   }
 
   if (data.contributing) {
-    data.contributing = `## This project was built by ${data.contributing}`
+    cont = `# How to contribute
+    ## This project was built by ${data.contributing}`;
+    conTrib = `* Contributing`;
   } else {
-    data.contributing = ``
+    data.contributing = ``;
   }
 
   if (data.tests) {
-    data.tests = `## ${data.tests}`
+    test = `# Tests
+     ## ${data.tests}`;
+    conTest = `* Testing`;
   } else {
-    data.tests = ``
+    data.tests = ``;
   }
 
   if (data.questions) {
-    data.questions = `## For any questions about this project, I can be reached through my Github account at https://github.com/${data.questions}`
+    quest = `# Contact
+     ## For any questions about this project, I can be reached through my Github account at https://github.com/${data.questions}`;
+    conQuest = `* Contact`;
   } else {
-    data.questions = ``
+    data.questions = ``;
   }
 
+  let tableOfContents = `
+  ${contDesc}
+  ${contUse}
+  ${conTrib}
+  ${conTest}
+  ${conQuest}
+  `;
 
   return `# ${data.title}
 
-  ${data.description}
+  ${desc}
 
-  ${data.usage}
+  ${tableOfContents}
 
-  ${data.tests}
+  ${use}
+
+  ${test}
 
   ## ${data.license}
 
-  ${data.contributing}
+  ${cont}
 
-  ${data.questions}
+  ${quest}
 
 `;
 }
