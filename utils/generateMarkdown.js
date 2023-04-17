@@ -15,19 +15,32 @@ function renderLicenseSection(license) {}
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   if (data.description) {
-    desc = `# Description
-    ## ${data.description}`;
-    conDesc = `-Description`;
+    desc = `## Description
+    ${data.description}`;
+    conDesc = `-Description
+    `;
     contentsArr.push(conDesc);
   } else {
     desc = ``;
     conDesc = "";
   }
 
+  if (data.languages) {
+    lang = `## Built with
+    ${data.languages}`;
+    contLang = `-Built with
+    `;
+    contentsArr.push(contLang);
+  } else {
+    lang = ``;
+    contLang = "";
+  }
+
   if (data.usage) {
-    use = `# Usage
-     ## ${data.usage}`;
-    contUse = `-Usage`;
+    use = `## Usage
+    ${data.usage}`;
+    contUse = `-Usage
+    `;
     contentsArr.push(contUse);
   } else {
     use = ``;
@@ -35,9 +48,10 @@ function generateMarkdown(data) {
   }
 
   if (data.contributing) {
-    cont = `# How to contribute
-    ## This project was built by ${data.contributing}`;
-    conTrib = `-Contributing`;
+    cont = `## Contributors
+    This project was built by ${data.contributing}`;
+    conTrib = `-Contributing
+    `;
     contentsArr.push(conTrib);
   } else {
     cont = ``;
@@ -45,9 +59,10 @@ function generateMarkdown(data) {
   }
 
   if (data.tests) {
-    test = `# Tests
-     ## ${data.tests}`;
-    conTest = `-Testing`;
+    test = `## Tests
+    ${data.tests}`;
+    conTest = `-Testing
+    `;
     contentsArr.push(conTest);
   } else {
     test = ``;
@@ -55,9 +70,10 @@ function generateMarkdown(data) {
   }
 
   if (data.questions) {
-    quest = `# Contact
-     ## For any questions about this project, I can be reached through my Github account at https://github.com/${data.questions}`;
-    conQuest = `-Contact`;
+    quest = `## Contact
+    For any questions about this project, I can be reached through my Github account at https://github.com/${data.questions}`;
+    conQuest = `-Contact
+  `;
     contentsArr.push(conQuest);
   } else {
     quest = ``;
@@ -69,16 +85,15 @@ function generateMarkdown(data) {
   ${contentsArr.map((data) => `${data}`).join("")}`;
 
   return `# ${data.title}
+  ${tableOfContents}
 
   ${desc}
 
-  ${tableOfContents}
+  ${lang}
 
   ${use}
 
   ${test}
-
-  ## ${data.license}
 
   ${cont}
 
